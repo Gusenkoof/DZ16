@@ -1,19 +1,20 @@
 package test;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.Driver;
 import utils.Log;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class LoginTest{
 
-public class BeforeAfter {
-    public WebDriver driver = Driver.getChromeDriver();
+    private WebDriver driver = Driver.getChromeDriver();
 
-    @BeforeAll
-    public void setUp(){
+    @Test
+    @DisplayName("Тест для проверки входа и выхода из аккаунта")
+    public void login(){
+
         Log.info("Открываем страницу авторизации");
         driver.get("http://a.testaddressbook.com/sign_in");
 
@@ -26,18 +27,9 @@ public class BeforeAfter {
         driver.findElement(By.name("session[password]")).sendKeys("Defender198605");
         driver.findElement(By.cssSelector("input[value='Sign in']")).click();
 
-        Log.info("Заходим на страницу добовления адреса");
-        driver.findElement(By.xpath("//a[@data-test='addresses']")).click();
-
-    }
-
-    @AfterAll
-    public void tearDown(){
         Log.info("Выходим из аккаунта");
         driver.findElement(By.cssSelector("a[data-test='sign-out']")).click();
         driver.quit();
-
     }
-            
 
 }

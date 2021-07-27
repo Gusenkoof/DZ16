@@ -2,10 +2,20 @@ package test;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import utils.Driver;
 import utils.Log;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AddressBook extends BeforeAfter{
+public class AddressBookTest extends BeforeAfter{
+
+    @Disabled
+    @Test
+    @Order(4)
+    @DisplayName("Тест который должен игнорироваться")
+    public void ignore(){
+        Log.info("Игнорирование теста");
+    }
 
     @Test
     @Order(1)
@@ -114,8 +124,7 @@ public class AddressBook extends BeforeAfter{
         Log.info("Подтверждаем действие в всплывающем окне");
         driver.switchTo().alert().accept();// нажимает "OK" ввсплывающем окне
 
-
- 
-
     }
+
+
 }
